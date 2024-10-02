@@ -2,6 +2,9 @@
 Desafio técnico Eclipseworks
 
 * Create image docker:
-  docker build -t docker-image-eclipeworks -f "C:\projetos\eclipseworks\task_management\Dockerfile" .
+  docker build -t image_docker_eclipseworks -f Dockerfile .
+
+* Execute:
+  docker run -d -p 5000:80 --name eclipsewoks_docker image_docker_eclipseworks
 
   
