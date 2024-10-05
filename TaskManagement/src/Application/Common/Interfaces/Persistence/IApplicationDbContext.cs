@@ -6,5 +6,6 @@ public interface IApplicationDbContext
 {
     DbSet<BlogPost> BlogPosts { get; }
     DbSet<Project> Projects { get; }
+    DbSet<User> Users { get; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

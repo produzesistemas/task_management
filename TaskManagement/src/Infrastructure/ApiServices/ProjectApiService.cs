@@ -31,6 +31,7 @@ public class ProjectApiService : IProjectApiService
         {
             Id = Guid.NewGuid(),
             Name = project.Name,
+            UserId = project.UserId,
         };
         _context.Projects.Add(entity);
         await _context.SaveChangesAsync();

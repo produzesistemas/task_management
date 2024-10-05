@@ -2,7 +2,7 @@
 using AutoMapper;
 using MediatR;
 
-namespace Application.Users.Queries.GetUserById;
+namespace Application.Users.Queries.GetUsers;
 
 public class GetUserByIdQuery : IRequest<UserDto>
 {

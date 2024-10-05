@@ -1,4 +1,6 @@
-﻿using Application.Common.Interfaces.Persistence;
+﻿using System.Numerics;
+using Application.Common.Interfaces.Persistence;
+using building.data.Mappings;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,8 +11,15 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
     }
 
-    public DbSet<BlogPost> BlogPosts => Set<BlogPost>();
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        new UserMap().Configure(modelBuilder.Entity<User>());
+        new ProjectMap().Configure(modelBuilder.Entity<Project>());
+    }
+
     public DbSet<Project> Projects => Set<Project>();
+    public DbSet<User> Users => Set<User>();
+    public DbSet<BlogPost> BlogPosts => Set<BlogPost>();
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {

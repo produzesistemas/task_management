@@ -8,7 +8,8 @@ using MediatR;
 namespace Application.Projects.Commands.CreateProject;
 public class CreateProjectCommand : IRequest<ProjectDto>
 {
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public Guid UserId { get; set; }
 }
 
 public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand, ProjectDto>
@@ -31,6 +32,7 @@ public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand,
         var project = new Project
         {
             Name = request.Name,
+            UserId = request.UserId,
         };
         return _mapper.Map<ProjectDto>(await _ProjectApiService.SaveProject(project));
     }

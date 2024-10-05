@@ -22,34 +22,84 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Entities.BlogPost", b =>
+            //modelBuilder.Entity("Domain.Entities.BlogPost", b =>
+            //    {
+            //        b.Property<Guid>("Id")
+            //            .ValueGeneratedOnAdd()
+            //            .HasColumnType("uniqueidentifier");
+
+            //        b.Property<string>("Content")
+            //            .IsRequired()
+            //            .HasColumnType("nvarchar(max)");
+
+            //        b.Property<string>("Image")
+            //            .IsRequired()
+            //            .HasColumnType("nvarchar(max)");
+
+            //        b.Property<DateTimeOffset>("PublishedDate")
+            //            .HasColumnType("datetimeoffset");
+
+            //        b.Property<string>("Title")
+            //            .IsRequired()
+            //            .HasColumnType("nvarchar(max)");
+
+            //        b.Property<string>("Url")
+            //            .IsRequired()
+            //            .HasColumnType("nvarchar(max)");
+
+            //        b.HasKey("Id");
+
+            //        b.ToTable("BlogPosts");
+            //    });
+
+            modelBuilder.Entity("Domain.Entities.Project", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Content")
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("Domain.Entities.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("PublishedDate")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Url")
+                    b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("BlogPosts");
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Project", b =>
+                {
+                    b.HasOne("Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
