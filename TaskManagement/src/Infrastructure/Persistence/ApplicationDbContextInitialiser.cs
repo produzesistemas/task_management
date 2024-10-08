@@ -16,7 +16,7 @@ public class ApplicationDbContextInitialiser
         _logger = logger;
     }
 
-    public async Task InitialiseAsync()
+    public async System.Threading.Tasks.Task InitialiseAsync()
     {
         try
         {
@@ -32,7 +32,7 @@ public class ApplicationDbContextInitialiser
         }
     }
 
-    public async Task SeedAsync()
+    public async System.Threading.Tasks.Task SeedAsync()
     {
         try
         {
@@ -45,7 +45,7 @@ public class ApplicationDbContextInitialiser
         }
     }
 
-    public async Task TrySeedAsync()
+    public async System.Threading.Tasks.Task TrySeedAsync()
     {
         if (!_context.Users.Any())
         {

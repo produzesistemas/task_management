@@ -1,6 +1,6 @@
 ﻿
 using Application.Common.Interfaces.ApiServices;
-using Application.Projects.Queries.GetProjectById;
+using Application.Projects.Queries;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
@@ -9,7 +9,7 @@ namespace Application.Projects.Commands.CreateProject;
 public class CreateProjectCommand : IRequest<ProjectDto>
 {
     public string Name { get; set; } = string.Empty;
-    public Guid UserId { get; set; }
+    public string UserId { get; set; } = string.Empty;
 }
 
 public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand, ProjectDto>
@@ -32,7 +32,7 @@ public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand,
         var project = new Project
         {
             Name = request.Name,
-            UserId = request.UserId,
+            UserId = new Guid(request.UserId),
         };
         return _mapper.Map<ProjectDto>(await _ProjectApiService.SaveProject(project));
     }

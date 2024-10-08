@@ -1,7 +1,6 @@
 ﻿using Application.Common.Interfaces.ApiServices;
 using Application.Common.Interfaces.Persistence;
 using Infrastructure.ApiServices;
-using Infrastructure.Common;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,11 +14,8 @@ namespace Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddHttpClient<IJsonPlaceholderApiService, JsonPlaceholderApiService>()
-                .SetHandlerLifetime(TimeSpan.FromMinutes(1))
-                .AddPolicyHandler(GetRetryPolicy());
             services.AddScoped<IProjectApiService, ProjectApiService>();
-            services.ConfigureOptions<IntegrationOptionsSetup>();
+            services.AddScoped<ITaskApiService, TaskApiService>();
             services.AddDbContext<ApplicationDbContext>((sp, options) =>
             {
                 options.UseSqlServer(configuration.GetSection("Persistence").GetSection("SqlServerConnectionString").Value);

@@ -6,10 +6,8 @@ public class CreateProjectCommandValidator : AbstractValidator<CreateProjectComm
 {
     public CreateProjectCommandValidator()
     {
-        RuleFor(createUserCommand => createUserCommand.Name)
-        .NotEmpty()
-        .MaximumLength(256).WithMessage("Campo Nome é obrigatório");
-        RuleFor(createUserCommand => createUserCommand.UserId)
-        .NotNull();
+        RuleFor(c => c.Name).NotEmpty().WithMessage("Campo Nome é obrigatório");
+        RuleFor(c => c.UserId).NotEmpty()
+        .WithMessage("Identificação do usuário é obrigatória");
     }
 }

@@ -1,8 +1,5 @@
 ﻿
-using Application.Common.Exceptions;
-using System.Net;
 using Application.Common.Interfaces.ApiServices;
-using Azure;
 using Domain.Entities;
 using Infrastructure.Persistence;
 using Microsoft.Extensions.Logging;
@@ -35,6 +32,6 @@ public class ProjectApiService : IProjectApiService
         };
         _context.Projects.Add(entity);
         await _context.SaveChangesAsync();
-        return await Task.FromResult(entity);
+        return await System.Threading.Tasks.Task.FromResult(entity);
     }
 }
