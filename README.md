@@ -9,7 +9,6 @@ Desafio técnico Eclipseworks
 
   Pendências para finalizar o desafio
 * Implementação de regra de negócio para restrição de remoção de projetos.
-* Remover a regra de negócio do update da task da camada de Infraestrutura para a camada de Aplicação.
 * Implementação de regra de negócio para limitar a quantidade de tarefas por projeto.
 * Implementação de relatórios.
 * Implementação de comentários nas tarefas.
