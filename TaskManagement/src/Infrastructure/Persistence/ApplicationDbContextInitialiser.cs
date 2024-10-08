@@ -49,20 +49,10 @@ public class ApplicationDbContextInitialiser
     {
         if (!_context.Users.Any())
         {
-            _context.Users.Add(new User
-            {
-                 Id = Guid.NewGuid(),
-                  Name = "Machado de Assis",
-                  Role = "Gerente"
-            });
-
-            _context.Users.Add(new User
-            {
-                Id = Guid.NewGuid(),
-                Name = "Augusto dos Anjos",
-                Role = "Técnico"
-            });
-
+            User user = new User("Machado de Assis", "Gerente");
+            _context.Users.Add(user);
+            user = new User("Augusto dos Anjos", "Técnico");
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
         }
     }

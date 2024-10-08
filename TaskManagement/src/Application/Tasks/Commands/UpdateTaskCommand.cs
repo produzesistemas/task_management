@@ -31,16 +31,17 @@ public class UpdateTaskCommandHandler : IRequestHandler<UpdateTaskCommand, TaskD
 
     public async Task<TaskDto> Handle(UpdateTaskCommand request, CancellationToken cancellationToken)
     {
-        var task = new Domain.Entities.Task
-        {
-            Description = request.Description,
-            Title = request.Title,
-            Status = request.Status,
-            Id = new Guid(request.Id),
-            ProjectId = new Guid(request.ProjectId),
-            UserId = new Guid(request.UserId),
-            DueDate = request.DueDate,
-        };
+        var task = new Domain.Entities.Task(
+            new Guid(request.Id),
+            request.Title,
+            request.Description,
+            request.Status,
+            new Guid(request.UserId),
+            new Guid(request.ProjectId),
+            request.DueDate
+            );
+
+
         return _mapper.Map<TaskDto>(await _TaskApiService.UpdateTask(task));
     }
 

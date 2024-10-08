@@ -30,65 +30,40 @@ public class TaskApiService : ITaskApiService
     {
         
         var taskBase = await _context.Tasks.FirstOrDefaultAsync(x => x.Id == task.Id);
-
-        if (task.Status != taskBase!.Status)
+        if (taskBase!.ChangeTitle(task.Title, taskBase.Title))
         {
-            var taskHistory = new TaskHistory();
-            taskHistory.Description = string.Concat("Status alterado de ", taskBase.Status, " para ", task.Status);
-            taskHistory.CreateDate = DateTime.Now;
-            taskHistory.UserId = task.UserId;
-            taskHistory.TaskId = taskBase.Id;
-            _context.TaskHistorys.Add(taskHistory);
+            var history = new TaskHistory(string.Concat("Título alterado de ", taskBase.Title, " para ", task.Title), task.UserId, taskBase.Id);
+            _context.TaskHistorys.Add(history);
         }
 
-        if (task.Title != taskBase.Title)
+        if (taskBase!.ChangeStatus(task.Status, taskBase!.Status))
         {
-            var taskHistory = new TaskHistory();
-            taskHistory.Description = string.Concat("Título alterado de ", taskBase.Title, " para ", task.Title);
-            taskHistory.CreateDate = DateTime.Now;
-            taskHistory.UserId = task.UserId;
-            taskHistory.TaskId = taskBase.Id;
-            _context.TaskHistorys.Add(taskHistory);
+            var history = new TaskHistory(string.Concat("Status alterado de ", taskBase.Status, " para ", task.Status), task.UserId, taskBase.Id);
+            _context.TaskHistorys.Add(history);
         }
 
-        if (task.Description != taskBase.Description)
+        if (taskBase!.ChangeDescription(task.Description, taskBase.Description))
         {
-            var taskHistory = new TaskHistory();
-            taskHistory.Description = string.Concat("Descrição da tarefa alterada de ", taskBase.Description, " para ", task.Description);
-            taskHistory.CreateDate = DateTime.Now;
-            taskHistory.UserId = task.UserId;
-            taskHistory.TaskId = taskBase.Id;
-            _context.TaskHistorys.Add(taskHistory);
+            var history = new TaskHistory(string.Concat("Descrição da tarefa alterada de ", taskBase.Description, " para ", task.Description), task.UserId, taskBase.Id);
+            _context.TaskHistorys.Add(history);
         }
 
-        if (task.DueDate != taskBase.DueDate)
+        if (taskBase!.ChangeDueDate(task.DueDate, taskBase.DueDate))
         {
-            var taskHistory = new TaskHistory();
-            taskHistory.Description = string.Concat("Data da tarefa alterada de ", taskBase.DueDate, " para ", task.DueDate);
-            taskHistory.CreateDate = DateTime.Now;
-            taskHistory.UserId = task.UserId;
-            taskHistory.TaskId = taskBase.Id;
-            _context.TaskHistorys.Add(taskHistory);
+            var history = new TaskHistory(string.Concat("Data da tarefa alterada de ", taskBase.DueDate, " para ", task.DueDate), task.UserId, taskBase.Id);
+            _context.TaskHistorys.Add(history);
         }
 
-        if (task.ProjectId != taskBase.ProjectId)
+        if (taskBase!.ChangeProject(task.ProjectId, taskBase.ProjectId))
         {
-            var taskHistory = new TaskHistory();
-            taskHistory.Description = string.Concat("Identificação do Projeto da tarefa alterada de ", taskBase.ProjectId, " para ", task.ProjectId);
-            taskHistory.CreateDate = DateTime.Now;
-            taskHistory.UserId = task.UserId;
-            taskHistory.TaskId = taskBase.Id;
-            _context.TaskHistorys.Add(taskHistory);
+            var history = new TaskHistory(string.Concat("Identificação do Projeto da tarefa alterada de ", taskBase.ProjectId, " para ", task.ProjectId), task.UserId, taskBase.Id);
+            _context.TaskHistorys.Add(history);
         }
 
-        if (task.UserId != taskBase.UserId)
+        if (taskBase!.ChangeUser(task.UserId, taskBase.UserId))
         {
-            var taskHistory = new TaskHistory();
-            taskHistory.Description = string.Concat("Identificação do usuário da tarefa alterada de ", taskBase.UserId, " para ", task.UserId);
-            taskHistory.CreateDate = DateTime.Now;
-            taskHistory.UserId = task.UserId;
-            taskHistory.TaskId = taskBase.Id;
-            _context.TaskHistorys.Add(taskHistory);
+            var history = new TaskHistory(string.Concat("Identificação do usuário da tarefa alterada de ", taskBase.UserId, " para ", task.UserId), task.UserId, taskBase.Id);
+            _context.TaskHistorys.Add(history);
         }
 
         taskBase!.Status = task.Status;

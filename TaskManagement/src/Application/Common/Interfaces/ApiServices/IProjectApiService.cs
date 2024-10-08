@@ -6,4 +6,5 @@ public interface IProjectApiService
 {
     public Task<Project> GetProject(Guid id);
     public Task<Project> SaveProject(Project project);
+    public System.Threading.Tasks.Task DeleteProject(Guid id);
 }

@@ -32,17 +32,15 @@ public class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand, TaskD
 
     public async Task<TaskDto> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
     {
-        var task = new Domain.Entities.Task
-        {
-            Id = new Guid(),
-            Description = request.Description,
-            Title = request.Title,
-            Status = request.Status,
-            Priority = request.Priority,
-            ProjectId = new Guid(request.ProjectId),
-            UserId = new Guid(request.UserId),
-            DueDate = request.DueDate,
-        };
+        var task = new Domain.Entities.Task(
+            request.Title,
+            request.Description,
+            request.Status,
+            request.Priority,
+            new Guid(request.UserId),
+            new Guid(request.ProjectId),
+            request.DueDate
+            );
         return _mapper.Map<TaskDto>(await _TaskApiService.SaveTask(task));
     }
 

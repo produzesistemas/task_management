@@ -16,6 +16,14 @@ public class ProjectApiService : IProjectApiService
         _context = context;
         _logger = logger;
     }
+
+    public async System.Threading.Tasks.Task DeleteProject(Guid id)
+    {
+        var projectBase = await _context.Projects.FirstOrDefaultAsync(x => x.Id == id);
+        await System.Threading.Tasks.Task.Run(() => _context.Projects.Remove(projectBase!));
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<Project> GetProject(Guid id)
     {
         var entity = await _context.Projects.FirstOrDefaultAsync(x => x.Id.Equals(id));
