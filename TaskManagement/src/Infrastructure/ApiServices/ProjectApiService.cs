@@ -24,14 +24,8 @@ public class ProjectApiService : IProjectApiService
 
     public async Task<Project> SaveProject(Project project)
     {
-            var entity = new Project()
-        {
-            Id = Guid.NewGuid(),
-            Name = project.Name,
-            UserId = project.UserId,
-        };
-        _context.Projects.Add(entity);
+        _context.Projects.Add(project);
         await _context.SaveChangesAsync();
-        return await System.Threading.Tasks.Task.FromResult(entity);
+        return await System.Threading.Tasks.Task.FromResult(project);
     }
 }

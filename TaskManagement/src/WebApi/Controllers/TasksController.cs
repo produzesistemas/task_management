@@ -1,8 +1,5 @@
-﻿using Application.Projects.Commands.CreateProject;
-using Application.Projects.Queries;
-using Application.Tasks.Commands;
+﻿using Application.Tasks.Commands;
 using Application.Tasks.Queries;
-using Application.Users.Queries.GetUsers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
@@ -23,14 +20,14 @@ public class TasksController : ApiControllerBase
     public async Task<ActionResult<TaskDto>> SaveTask(CreateTaskCommand command)
     {
 
-            return await Mediator.Send(command);
+        return await Mediator.Send(command);
     }
 
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<ActionResult<TaskDto>> UpdateTask(UpdateTaskCommand command)
     {
-            return await Mediator.Send(command);
+        return await Mediator.Send(command);
     }
 
     [HttpGet]
@@ -42,7 +39,7 @@ public class TasksController : ApiControllerBase
     [HttpDelete]
     public async Task<IActionResult> Delete([FromQuery] DeleteTaskCommand command)
     {
-            return Ok(await Mediator.Send(command));
+        return Ok(await Mediator.Send(command));
     }
 
     }

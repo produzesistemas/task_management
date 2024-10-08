@@ -34,6 +34,7 @@ public class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand, TaskD
     {
         var task = new Domain.Entities.Task
         {
+            Id = new Guid(),
             Description = request.Description,
             Title = request.Title,
             Status = request.Status,

@@ -31,6 +31,7 @@ public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand,
     {
         var project = new Project
         {
+            Id = new Guid(),
             Name = request.Name,
             UserId = new Guid(request.UserId),
         };

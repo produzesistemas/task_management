@@ -21,20 +21,9 @@ public class TaskApiService : ITaskApiService
 
     public async Task<Domain.Entities.Task> SaveTask(Domain.Entities.Task task)
     {
-        var entity = new Domain.Entities.Task()
-        {
-            Id = Guid.NewGuid(),
-            Description = task.Description, 
-            Title = task.Title,
-            Status = task.Status,
-            ProjectId = task.ProjectId,
-            UserId = task.UserId,
-            Priority = task.Priority,
-            DueDate = task.DueDate,
-        };
-        _context.Tasks.Add(entity);
+        _context.Tasks.Add(task);
         await _context.SaveChangesAsync();
-        return await System.Threading.Tasks.Task.FromResult(entity);
+        return await System.Threading.Tasks.Task.FromResult(task);
     }
 
     public async Task<Domain.Entities.Task> UpdateTask(Domain.Entities.Task task)
