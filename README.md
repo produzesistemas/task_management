@@ -18,6 +18,7 @@ API Rest para desafio técnico
 * .Net 8.
 * Banco de dados MSSQL será criado na pasta do usuário local(c:\users\nome_usuario).
 * Arquitetura Clean Code implementada.
+* Uso do padrão CQS para separar comandos de consultas.
 * Injeção de dependências.
 * Uso de Entity Framework para persistência de dados com mapeamento.
 * FluentValidation para validação de dados.
