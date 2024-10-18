@@ -21,10 +21,8 @@ public class TaskApiService : ITaskApiService
 
     public async Task<Domain.Entities.Task> SaveTask(Domain.Entities.Task task)
     {
-        var project = await _context.Projects.FirstOrDefaultAsync(p => p.Id == task.ProjectId);
-        var tasks = _context.Tasks.Where(p => p.ProjectId == project!.Id).ToListAsync().Result.Count();
-        project!.ValidateQuantityTask(tasks);
-
+        var tasks = _context.Tasks.Where(p => p.ProjectId == task.ProjectId).ToListAsync().Result.Count();
+        Project.ValidateQuantityTask(tasks);
         _context.Tasks.Add(task);
         await _context.SaveChangesAsync();
         return await System.Threading.Tasks.Task.FromResult(task);
