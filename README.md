@@ -1,11 +1,10 @@
 # task_management
-Desafio técnico Eclipseworks
+API Rest para desafio técnico
   
   Comandos Docker
 * Inicializando o docker no projeto e criando os arquivos necessários para executar o container: docker init
-* Create image docker with uma tag: docker image build -t eclipseWorks/task-management -t eclipseWorks/task-management:8.0.0 .
-* Execute: docker run -d -p 8000:8080 eclipseWorks/task-management
-* Como o swagger está configurado no projeto acesse através da url: http://localhost:8000/swagger/index.html
+* Implementando imagem com uma tag: docker image build -t eclipseWorks/task-management -t eclipseWorks/task-management:v1 .
+* Rodando o container: docker run -d -p 80:8080 eclipseWorks/task-management
 
   Pendências para finalizar o desafio
 * Implementação de regra de negócio para restrição de remoção de projetos.
@@ -19,6 +18,7 @@ Desafio técnico Eclipseworks
 * .Net 8.
 * Banco de dados MSSQL será criado na pasta do usuário local(c:\users\nome_usuario).
 * Arquitetura Clean Code implementada.
+* Uso do padrão CQS para separar comandos de consultas.
 * Injeção de dependências.
 * Uso de Entity Framework para persistência de dados com mapeamento.
 * FluentValidation para validação de dados.
