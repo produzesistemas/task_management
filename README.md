@@ -1,5 +1,5 @@
 # task_management
-Desafio técnico Eclipseworks
+API Rest para desafio técnico
   
   Comandos Docker
 * Inicializando o docker no projeto e criando os arquivos necessários para executar o container: docker init
