@@ -16,6 +16,7 @@ public class ProjectsController : ApiControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<ActionResult<ProjectDto>> CreateProject(CreateProjectCommand command)
     {
        return await Mediator.Send(command);

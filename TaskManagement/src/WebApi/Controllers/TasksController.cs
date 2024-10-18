@@ -17,6 +17,7 @@ public class TasksController : ApiControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<ActionResult<TaskDto>> SaveTask(CreateTaskCommand command)
     {
 
