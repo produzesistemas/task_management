@@ -21,6 +21,10 @@ public class TaskApiService : ITaskApiService
 
     public async Task<Domain.Entities.Task> SaveTask(Domain.Entities.Task task)
     {
+        var project = await _context.Projects.FirstOrDefaultAsync(p => p.Id == task.ProjectId);
+        var tasks = _context.Tasks.Where(p => p.ProjectId == project!.Id).ToListAsync().Result.Count();
+        project!.ValidateQuantityTask(tasks);
+
         _context.Tasks.Add(task);
         await _context.SaveChangesAsync();
         return await System.Threading.Tasks.Task.FromResult(task);
@@ -28,7 +32,6 @@ public class TaskApiService : ITaskApiService
 
     public async Task<Domain.Entities.Task> UpdateTask(Domain.Entities.Task task)
     {
-        
         var taskBase = await _context.Tasks.FirstOrDefaultAsync(x => x.Id == task.Id);
         if (taskBase!.ChangeTitle(task.Title, taskBase.Title))
         {

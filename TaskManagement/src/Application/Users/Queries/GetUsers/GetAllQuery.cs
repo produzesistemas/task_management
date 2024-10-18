@@ -21,7 +21,7 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery, List<UserDto>>
 
     public async Task<List<UserDto>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
-        var results = await _dbContext.Users.OrderByDescending(x => x.Name).ToListAsync();
+        var results = await _dbContext.Users.ToListAsync();
         return _mapper.Map<List<UserDto>>(results);
     }
 }

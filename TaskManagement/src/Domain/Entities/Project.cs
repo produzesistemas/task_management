@@ -12,4 +12,13 @@ public class Project
         this.Name = name;
         this.UserId = userId;
     }
+
+    public static void ValidateQuantityTask(int quantity)
+    {
+        if (quantity > 20)
+        {
+            throw new ArgumentException("Quantidade de tarefas não pode ultrapassar 20!");
+        }
+        
+    }
 }

@@ -6,14 +6,16 @@ public class TaskHistory
     public string Description { get; set; } = string.Empty;
     public Guid UserId { get; set; }
     public Guid TaskId { get; set; }
-    public DateTime CreateDate { get; set; } = DateTime.Now;
+    public DateTime CreateDate { get; set; }
     public User User { get; set; } = default!;
     public Task Task { get; set; } = default!;
 
-    public TaskHistory(string desciption, Guid userId, Guid taskId)
+    public TaskHistory(string description, Guid userId, Guid taskId)
     {
-        this.Description = desciption;
+        this.Id = new Guid();
+        this.Description = description;
         this.UserId = userId;
         this.TaskId = taskId;
+        this.CreateDate = DateTime.Now;
     }
 }

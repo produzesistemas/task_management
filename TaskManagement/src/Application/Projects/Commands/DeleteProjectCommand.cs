@@ -10,8 +10,6 @@ public class DeleteProjectCommand : IRequest<string>
     public Guid Id { get; set; }
 }
 
-public Guid Id { get; set; }
-}
 
 public class DeleteProjectCommandHandler : IRequestHandler<DeleteProjectCommand, string>
 {

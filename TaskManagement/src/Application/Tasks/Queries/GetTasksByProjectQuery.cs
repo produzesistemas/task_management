@@ -22,7 +22,7 @@ public class GetTasksByProjectQueryHandler : IRequestHandler<GetTasksByProjectQu
 
     public async Task<List<TaskDto>> Handle(GetTasksByProjectQuery request, CancellationToken cancellationToken)
     {
-        var results = await _dbContext.Tasks.Where(x => x.ProjectId == request.ProjectId).OrderBy(x => x.Priority).ToListAsync();
+        var results = await _dbContext.Tasks.Where(x => x.ProjectId == request.ProjectId).ToListAsync();
         return _mapper.Map<List<TaskDto>>(results);
     }
 }

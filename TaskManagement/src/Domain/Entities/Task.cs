@@ -25,14 +25,13 @@ public class Task
         this.DueDate = dueDate;
     }
 
-    public Task(Guid id, string title, string description, string status, Guid userId, Guid projectId, DateTime dueDate)
+    public Task(Guid id, string title, string description, string status, Guid userId, DateTime dueDate)
     {
         this.Id = id;
         this.Title = title;
         this.Description = description;
         this.Status = status;
         this.UserId = userId;
-        this.ProjectId = projectId;
         this.DueDate = dueDate;
     }
 
@@ -65,4 +64,6 @@ public class Task
     {
         return description != descriptionBase ? true : false;
     }
+
+
 }

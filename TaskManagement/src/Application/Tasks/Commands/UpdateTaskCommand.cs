@@ -37,10 +37,8 @@ public class UpdateTaskCommandHandler : IRequestHandler<UpdateTaskCommand, TaskD
             request.Description,
             request.Status,
             new Guid(request.UserId),
-            new Guid(request.ProjectId),
             request.DueDate
             );
-
 
         return _mapper.Map<TaskDto>(await _TaskApiService.UpdateTask(task));
     }

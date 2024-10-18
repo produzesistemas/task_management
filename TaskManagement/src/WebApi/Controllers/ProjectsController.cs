@@ -1,4 +1,4 @@
-﻿using Application.Projects.Commands.CreateProject;
+﻿using Application.Projects.Commands;
 using Application.Projects.Queries;
 using Microsoft.AspNetCore.Mvc;
 
