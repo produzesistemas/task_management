@@ -20,8 +20,8 @@ namespace Infrastructure
             {
                 options.UseSqlServer(configuration.GetSection("Persistence").GetSection("SqlServerConnectionString").Value);
             });
-            services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
-            services.AddScoped<ApplicationDbContextInitialiser>();
+            services.AddTransient<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
+            services.AddTransient<ApplicationDbContextInitialiser>();
             return services;
         }
 
