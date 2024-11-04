@@ -15,6 +15,7 @@ API Rest para desafio técnico
 * Implementação da Fase 2 do desafio.
 
   Detalhes do projeto
+* Template utilizado para inicialização do projeto https://github.com/rimaz523/Clean.Lean.Architecture.WebApi.AspNetCore.Solution.Template/tree/master
 * .Net 8.
 * Banco de dados MSSQL será criado na pasta do usuário local(c:\users\nome_usuario).
 * Arquitetura Clean Code implementada.
